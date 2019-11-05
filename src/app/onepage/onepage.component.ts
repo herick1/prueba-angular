@@ -24,7 +24,7 @@ export class OnepageComponent implements OnInit {
   jugador = {
      name:"Invitado",
      numeroplayer: -1,
-     port:8080,
+     port: process.env.YOUR_PORT || process.env.PORT || 80,
      url:"localhost"
   }
 
