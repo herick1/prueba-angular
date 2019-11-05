@@ -815,4 +815,7 @@ app.delete("/*", (req, res) => {
   res.status(404).send();
 });
 
-http.createServer(onRequest).listen(process.env.PORT || 6000)
+
+
+// Start the app by listening on the default Heroku port
+app.listen(process.env.PORT || 8080);
