@@ -10,9 +10,9 @@ var app = express();
 
 const path = require('path');
 
-app.use(express.static('/dist/prueba-angular-12'));
+app.use(express.static(__dirname+'/dist/prueba-angular-12'));
 app.get('/',function(req,res){
-    res.sendFile(path.join('/dist/prueba-angular-12/index.html'));
+    res.sendFile(path.join(__dirname+'/dist/prueba-angular-12/index.html'));
 });
 
 app.use(
