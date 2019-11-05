@@ -1,4 +1,3 @@
-require("./config/config");
 
 const rp = require("request-promise");
 const express = require("express");
@@ -6,7 +5,6 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const _ = require("lodash");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
-const port = process.env.PORT;
 const ip = require("ip");
 var app = express();
 
