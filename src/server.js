@@ -12,9 +12,9 @@ var app = express();
 
 const path = require('path');
 
-app.use(express.static(__dirname+'/dist/ng-blog'));
+app.use(express.static(__dirname+'/dist/prueba-angular-12'));
 app.get('/',function(req,res){
-    res.sendFile(path.join(__dirname+'/dist/ng-blog/index.html'));
+    res.sendFile(path.join(__dirname+'/dist/prueba-angular-12/index.html'));
 });
 
 app.use(
@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 let YO= {
           name:"herick",
           numeroplayer:1,
-          port: 10001,
+          port: 8080,
           url: ip.address()
         }; 
 
@@ -817,3 +817,6 @@ app.delete("/*", (req, res) => {
   res.status(404).send();
 });
 
+app.listen(YO.port, () => {
+  console.log(`Started on port ${YO.port}`);
+});
