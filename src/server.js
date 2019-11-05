@@ -804,10 +804,6 @@ app.post("/newplayerRetorno", urlencodedParser, (req, res) => {
   res.json({ status: "success", message: "newplayerRetorno" });
 });
 
-// not match endpoints
-app.get("/*", (req, res) => {
-  res.status(404).send();
-});
 
 app.post("/*", (req, res) => {
   res.status(404).send();
@@ -821,6 +817,3 @@ app.delete("/*", (req, res) => {
   res.status(404).send();
 });
 
-app.listen(YO.port, () => {
-  console.log(`Started on port ${YO.port}`);
-});
