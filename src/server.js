@@ -21,6 +21,8 @@ app.use(
     exposedHeaders: "x-access-token"
   })
 );
+
+
 app.use(bodyParser.json());
 
 //funcione globales
