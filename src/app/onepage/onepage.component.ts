@@ -74,6 +74,7 @@ export class OnepageComponent implements OnInit {
       this.http.get("https://"+ this.jugador.url+"/jugador").subscribe( 
         (response: any)=>{    
           this.jugador = response.message;
+          this.jugador.name = "probando a cambiar";
           console.log(this.jugador)
         }
       );
@@ -137,7 +138,7 @@ export class OnepageComponent implements OnInit {
              {                
                 this.fichasTablero ="" 
                 for(var j = 0; j<this.partidas[i].fichas_jugadas.length;j++){ 
-                      this.fichasTablero +=    " "  +  this.partidas[i].fichas_jugadass[j]+ "  "; 
+                      this.fichasTablero +=    " "  +  this.partidas[i].fichas_jugadas[j]+ "  "; 
                 }
                 if((this.partidas[i].jugador1.ip  == this.jugador.url)){                   
                       this.fichasTuyas ="" 
