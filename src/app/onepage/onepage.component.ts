@@ -71,7 +71,7 @@ export class OnepageComponent implements OnInit {
   //Este metodo es para preguntar a cada rato al servidor ¿quien soy? 
   getJugador() {
     if(this.Selogio){
-      this.http.get("http://"+ this.jugador.url+"/jugador").subscribe( 
+      this.http.get("https://"+ this.jugador.url+"/jugador").subscribe( 
         (response: any)=>{    
           this.jugador = response.message;
           console.log(this.jugador)
@@ -83,7 +83,7 @@ export class OnepageComponent implements OnInit {
   //Este metodo es para preguntar a cada rato las partidas
   getPartidas() {
     if(this.Selogio){
-      this.http.get("http://"+ this.jugador.url +"/partidas").subscribe( 
+      this.http.get("https://"+ this.jugador.url +"/partidas").subscribe( 
         (response: any)=>{
           this.player.status = response.status;
           this.partidas = response.message;
@@ -97,7 +97,7 @@ export class OnepageComponent implements OnInit {
                 name:nombre,
                 url:ip
               }
-    this.http.post("http://"+ ip +"/registrarusuario", body).subscribe( 
+    this.http.post("https://"+ ip +"/registrarusuario", body).subscribe( 
         (response: any)=>{
           this.player.status = response.status;
           this.partidas = response.message;
@@ -116,7 +116,7 @@ export class OnepageComponent implements OnInit {
                           url:ip
                         }
                       }
-        this.http.post("http://"+ ipNewplayer +"/newplayer", newplayer)
+        this.http.post("https://"+ ipNewplayer +"/newplayer", newplayer)
         .subscribe( 
             (response: any)=>{
               this.player.status = response.status;
@@ -193,7 +193,7 @@ export class OnepageComponent implements OnInit {
                 id:idpartida,
                 estatus: "FiNALIZO"
               }               
-    this.http.put("http://"+ this.jugador.url+"/JugadorAbandonaPartida", body)
+    this.http.put("https://"+ this.jugador.url+"/JugadorAbandonaPartida", body)
     .subscribe( 
         (response: any)=>{
           this.player.status = response.status;
@@ -219,7 +219,7 @@ export class OnepageComponent implements OnInit {
           }
         }
 
-    this.http.post("http://"+ this.jugador.url +"/unirsepartida", body)
+    this.http.post("https://"+ this.jugador.url +"/unirsepartida", body)
     .subscribe( 
         (response: any)=>{
           this.player.status = response.status;
@@ -240,7 +240,7 @@ export class OnepageComponent implements OnInit {
   }
 
   CrearPartida(){
-    this.http.post("http://"+ this.jugador.url +"/crearpartida",{})
+    this.http.post("https://"+ this.jugador.url +"/crearpartida",{})
     .subscribe( 
         (response: any)=>{
           this.player.status = response.status;
@@ -259,7 +259,7 @@ export class OnepageComponent implements OnInit {
             ficha:fichaAJugar,
             ip:this.jugador.url  
           }  
-      this.http.post("http://"+ this.jugador.url +"/realizarJugada", body)
+      this.http.post("https://"+ this.jugador.url +"/realizarJugada", body)
       .subscribe( 
         (response: any)=>{
           this.player.status = response.status;
