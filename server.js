@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 let YO= {
           name:"herick",
           numeroplayer:1,
-          port: 8080,
+          //port: 8080,
           url: ip.address()
         }; 
 
@@ -44,7 +44,7 @@ class Partida{
   constructor (){
     this.id = -1;
     this.ipjugadorCreadorDeLaPartida = "";  
-    this.portjugadorCreadorDeLaPartida;  
+    //this.portjugadorCreadorDeLaPartida;  
     this.turno_jugador= 1;
     this.jugador1 = {ip : "", fichas : [] };
     this.jugador2 = {ip : "" , fichas : [] };
@@ -96,7 +96,7 @@ app.get("/jugador", urlencodedParser, (req, res) => {
 app.post("/crearpartida", urlencodedParser, (req, res) => {
   let partida = new Partida();
   partida.ipjugadorCreadorDeLaPartida = YO.url;
-  partida.portjugadorCreadorDeLaPartida = YO.port;
+  //partida.portjugadorCreadorDeLaPartida = YO.port;
   partida.id = partidas.length;
   partida.jugador1.fichas=partida.llenarfichas()
   partida.jugador2.fichas=partida.llenarfichas()
@@ -106,7 +106,7 @@ app.post("/crearpartida", urlencodedParser, (req, res) => {
   for (var i = 0; i < usuariosLista.length ; i++) {
     let options = {
         method: "POST",
-        uri: "http://"+ usuariosLista[i].url+":" + usuariosLista[i].port + "/crearpartidaBackend", 
+        uri: "http://"+ usuariosLista[i].url+ "/crearpartidaBackend", 
         resolveWithFullResponse: true,
         json: true,
         body: {partida}
@@ -166,14 +166,14 @@ app.post("/unirsepartida", urlencodedParser, (req, res) => {
         for (var i = 0; i < usuariosLista.length ; i++) {
           let options = {
               method: "PUT",
-              uri: "http://"+ usuariosLista[i].url+":" + usuariosLista[i].port + "/unirsepartidaBackend", 
+              uri: "http://"+ usuariosLista[i].url+ "/unirsepartidaBackend", 
               resolveWithFullResponse: true,
               json: true,
               body: {
                 "partida":{
                   "id":body.partida.id,
-                  "url":body.partida.url,  
-                  "port":body.partida.port   
+                  "url":body.partida.url 
+                  //"port":body.partida.port   
                 }
               }
           }
@@ -200,14 +200,14 @@ app.post("/unirsepartida", urlencodedParser, (req, res) => {
         Seunio = true;
         let options = {
             method: "PUT",
-            uri: "http://"+ partidas[i].ipjugadorCreadorDeLaPartida+":" + partida[i].portjugadorCreadorDeLaPartida + "/unirsepartida", 
+            uri: "http://"+ partidas[i].ipjugadorCreadorDeLaPartida+"/unirsepartida", 
             resolveWithFullResponse: true,
             json: true,
             body: {
               "partida":{
                 "id":body.partida.id,
-                "url":body.partida.url,  
-                "port":body.partida.port  
+                "url":body.partida.url 
+                //"port":body.partida.port  
               }
             }
           }
@@ -256,7 +256,7 @@ function Abandonar(id_partida, estatus) {
         for (var i = 0; i < usuariosLista.length ; i++) {
           let options = {
               method: "PUT",
-              uri: "http://"+ usuariosLista[i].url+":" + usuariosLista[i].port + "/cambiarestatuspartida", 
+              uri: "http://"+ usuariosLista[i].url+"/cambiarestatuspartida", 
               resolveWithFullResponse: true,
               json: true,
               body: {
@@ -665,7 +665,7 @@ app.post("/realizarJugada", urlencodedParser, (req, res) => {
   for (var i = 0; i < usuariosLista.length ; i++) {
     let options = {
         method: "PUT",
-        uri: "http://"+ usuariosLista[i].url+":" + usuariosLista[i].port + "/realizarjugadaBackend", 
+        uri: "http://"+ usuariosLista[i].url+ "/realizarjugadaBackend", 
         resolveWithFullResponse: true,
         json: true,
         body: {
@@ -725,7 +725,7 @@ app.post("/newplayer", urlencodedParser, (req, res) => {
       for (var i = 0; i < usuariosLista.length ; i++) {
           let options = {
               method: "POST",
-              uri: "http://"+ usuariosLista[i].url+":" + usuariosLista[i].port + "/newplayer", 
+              uri: "http://"+ usuariosLista[i].url+ "/newplayer", 
               resolveWithFullResponse: true,
               json: true,
               body: body
@@ -743,13 +743,13 @@ app.post("/newplayer", urlencodedParser, (req, res) => {
       //ahora le enviamos de nuevo al nodo que mando nuestra informacion la informacion de este nodo 
      let options = {
               method: "POST",
-              uri: "http://" + body.newplayer.url +":"+ body.newplayer.port + "/newplayerRetorno", //ponemos este puerto porque es solo para que los otros nodos una sola vez
+              uri: "http://" + body.newplayer.url + "/newplayerRetorno", //ponemos este puerto porque es solo para que los otros nodos una sola vez
               resolveWithFullResponse: true,                                 //envien su informacion al nuevo nudo que esta ingresando 
               json: true,
               body: {   newplayer: {
                                   name:YO.name,
                                   numeroplayer: YO.numeroplayer,
-                                  port: YO.port,
+                                  //port: YO.port,
                                   url:YO.url 
                         } 
                     }
@@ -767,7 +767,7 @@ app.post("/newplayer", urlencodedParser, (req, res) => {
         let partida = partidas[i]; //intente hacer un foreach pero no me deja
         let options = {
             method: "POST",
-            uri: "http://"+ body.newplayer.url +":"+ body.newplayer.port + "/crearpartidaBackend", 
+            uri: "http://"+ body.newplayer.url + "/crearpartidaBackend", 
             resolveWithFullResponse: true,
             json: true,
             body: { partida}
