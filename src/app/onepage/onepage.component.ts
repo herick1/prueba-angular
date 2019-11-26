@@ -21,6 +21,8 @@ export class OnepageComponent implements OnInit {
 
   // estos son los datos que tendra angular 
   //aqui esta la informacion del jugador 
+  jugadores = []
+
   jugador = {
      name:"Invitado",
      numeroplayer: -1,
@@ -74,7 +76,7 @@ export class OnepageComponent implements OnInit {
       this.http.get("https://"+ this.jugador.url+"/jugador").subscribe( 
         (response: any)=>{    
           this.jugador = response.message;
-          this.jugador.name = "probando a cambiar";
+          this.jugadores[0] =  response.message;
           console.log(this.jugador)
         }
       );
