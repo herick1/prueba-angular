@@ -123,6 +123,7 @@ export class OnepageComponent implements OnInit {
               this.partidas = response.message;
           });
     }
+    this.jugador.url= ip;
     this.Selogio = true; 
   }
 
